@@ -47,18 +47,20 @@ app.post('/signup', function(req, res) {
   var nameField = req.body.name,
       emailField = req.body.email,
       previewBool = req.body.previewAccess;
+      photoField = req.body.photoUrl;
   res.send(200);
-  signup(nameField, emailField, previewBool);
+  signup(nameField, emailField, previewBool photoField);
 });
 
 //Add signup form data to database.
-var signup = function (nameSubmitted, emailSubmitted, previewPreference) {
+var signup = function (nameSubmitted, emailSubmitted, previewPreference, photoUrlSubmitted) {
   var formData = {
     TableName: config.STARTUP_SIGNUP_TABLE,
     Item: {
       email: {'S': emailSubmitted}, 
       name: {'S': nameSubmitted},
-      preview: {'S': previewPreference}
+      preview: {'S': previewPreference},
+      photo: {'S': photoUrlSubmitted}
     }
   };
   db.putItem(formData, function(err, data) {
