@@ -49,7 +49,7 @@ app.post('/signup', function(req, res) {
       previewBool = req.body.previewAccess;
       photoField = req.body.photoUrl;
   res.send(200);
-  signup(nameField, emailField, previewBool photoField);
+  signup(nameField, emailField, previewBool, photoField);
 });
 
 //Add signup form data to database.
